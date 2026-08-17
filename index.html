@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piss Skepter's Amazing Team</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Fake Loading Screen -->
+  <div id="loadingScreen" class="loading-screen" aria-live="polite">
+    <div class="loading-content">
+      <h2 class="loading-title">Loading Piss Skepter's Team Website</h2>
+      
+      <!-- Player Silhouette Grid appearing one by one -->
+      <div id="loadingSilhouettes" class="loading-silhouettes-container">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- White Loading Progress Bar -->
+      <div class="loading-bar-wrapper">
+        <div class="loading-bar-track">
+          <div id="loadingBarFill" class="loading-bar-fill"></div>
+        </div>
+        <div class="loading-status-text">
+          <span id="loadingPercent">0%</span>
+          <span id="loadingStatus">INITIALIZING ROSTER DATA...</span>
+        </div>
+      </div>
+
+      <!-- Footer with GitHub Logo -->
+      <div class="loading-footer">
+        <svg class="github-logo" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <span>Powered by NORTHSTAR a.k.a BlackwellArchitecture on Github</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="page-container">
+    <!-- Center Title Section -->
+    <header class="title-section">
+      <h1 class="main-title">Piss Skepter's Amazing Team</h1>
+      <p class="subtitle-text">Hey Skepter, I hope you're reading this</p>
+      <div class="shadow-divider" aria-hidden="true"></div>
+      
+      <!-- Navigation Tabs -->
+      <nav class="nav-tabs" aria-label="Main Navigation">
+        <button class="tab-btn active" data-tab="members">Members</button>
+        <button class="tab-btn" data-tab="museum">Museum</button>
+        <button class="tab-btn" data-tab="tournament">Tournament</button>
+      </nav>
+    </header>
+
+    <!-- Tab 1: Members View -->
+    <div id="tab-members" class="tab-pane active">
+      <!-- Holographic Member Showcase Section -->
+      <section class="showcase-section" aria-live="polite">
+        <div class="showcase-container">
+          <!-- Hologram Ghostly Avatar -->
+          <div class="hologram-wrapper">
+            <img id="holoImage" class="holo-image" src="" alt="Holographic Member Projection">
+          </div>
+
+          <!-- Typewriter Description Panel -->
+          <div class="description-wrapper" id="descriptionWrapper">
+            <div class="description-header">
+              <span id="holoMemberName" class="holo-member-name"></span>
+            </div>
+            <div class="description-body">
+              <p id="typewriterText" class="typewriter-text"></p>
+              <span class="typing-cursor" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Player Carousel Section -->
+      <section class="player-section" aria-label="Team Members Selector">
+        <div class="carousel-wrapper">
+          <button id="prevBtn" class="nav-arrow prev-arrow" aria-label="Previous Player">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
+          <div class="player-card" id="playerCard">
+            <div class="player-avatar-box">
+              <img id="playerImage" src="" alt="Player Avatar" class="player-avatar">
+            </div>
+            <div class="player-info">
+              <h2 id="playerName" class="player-name"></h2>
+              <span id="playerIndex" class="player-index"></span>
+            </div>
+          </div>
+
+          <button id="nextBtn" class="nav-arrow next-arrow" aria-label="Next Player">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Tab 2: Museum View -->
+    <div id="tab-museum" class="tab-pane">
+      <section class="museum-section">
+        <div class="museum-frame">
+          <img src="Images/Museum/LMS_Team_Lineup.png" alt="LMS Team Lineup" class="museum-image">
+        </div>
+        <h2 class="museum-title">The Team That Started It All</h2>
+      </section>
+    </div>
+
+    <!-- Tab 3: Tournament View -->
+    <div id="tab-tournament" class="tab-pane">
+      <section class="tournament-section">
+        <div class="video-container">
+          <iframe 
+            class="video-embed"
+            src="https://www.youtube.com/embed/gzuPxHvFj50?rel=0" 
+            title="Tournament Video" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="tournament-footer">
+          <a href="https://www.youtube.com/watch?v=gzuPxHvFj50" target="_blank" rel="noopener noreferrer" class="youtube-direct-link">
+            <svg class="youtube-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            <span>Open on YouTube</span>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
