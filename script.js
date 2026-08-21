@@ -37,9 +37,9 @@ const players = [
     isGold: false
   },
   {
-    name: 'itsyonichi',
-    image: 'Images/Players/itsyonichi.png',
-    description: "This is one of our newest members and absolute amazing replacement who is able to help with Piss Skepter's success",
+    name: 'Please_petimnoob2000',
+    image: 'Images/Players/Please_petimnoob2000.png',
+    description: "One of our team's substitutes. This player will serve as our last line of defense making sure the team doesn't get wiped out of the match. Welcome to the team, I hope you enjoy the semifinals with us.",
     isGold: false
   },
   {
