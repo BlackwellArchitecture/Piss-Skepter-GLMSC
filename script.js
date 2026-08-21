@@ -77,7 +77,8 @@ const players = [
 let currentIndex = 0;
 let typewriterTimeout = null;
 
-// DOM Elements - Main Page
+// DOM Elements - Main Page & Containers
+const mainPageContainer = document.getElementById('mainPageContainer');
 const holoImage = document.getElementById('holoImage');
 const holoMemberName = document.getElementById('holoMemberName');
 const descriptionWrapper = document.getElementById('descriptionWrapper');
@@ -98,12 +99,28 @@ const loadingBarFill = document.getElementById('loadingBarFill');
 const loadingPercent = document.getElementById('loadingPercent');
 const loadingStatus = document.getElementById('loadingStatus');
 
+// DOM Elements - Tribute Archive Modal
+const tributeModal = document.getElementById('tributeModal');
+const proceedBtn = document.getElementById('proceedBtn');
+
+// DOM Elements - Lightbox
+const lightboxModal = document.getElementById('lightboxModal');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxBackdrop = document.getElementById('lightboxBackdrop');
+const memoryTiles = document.querySelectorAll('.memory-tile');
+
 // -------------------------------------------------------------
 // Loading Screen Animation (8 Seconds with Realistic Variable Pacing)
 // -------------------------------------------------------------
 function initLoadingScreen() {
   if (!loadingScreen || !loadingSilhouettes) {
-    updatePlayer(0, false);
+    if (tributeModal) {
+      tributeModal.classList.remove('hidden');
+      if (mainPageContainer) mainPageContainer.classList.add('blurred');
+    } else {
+      updatePlayer(0, false);
+    }
     return;
   }
 
@@ -209,11 +226,17 @@ function initLoadingScreen() {
       if (loadingPercent) loadingPercent.textContent = '100%';
       if (loadingBarFill) loadingBarFill.style.width = '100%';
 
-      // Transition out loading screen
+      // Transition out loading screen and display tribute archive modal with blurred background
       setTimeout(() => {
         loadingScreen.classList.add('hidden');
-        // Initialize first player with animation
-        updatePlayer(0, false);
+        if (tributeModal) {
+          tributeModal.classList.remove('hidden');
+          if (mainPageContainer) {
+            mainPageContainer.classList.add('blurred');
+          }
+        } else {
+          updatePlayer(0, false);
+        }
       }, 350);
     }
   }
@@ -301,6 +324,50 @@ function updatePlayer(index, animate = true) {
   typeWriter(player.description, 0);
 }
 
+// -------------------------------------------------------------
+// Lightbox Modal Handling
+// -------------------------------------------------------------
+function openLightbox(src) {
+  if (!lightboxModal || !lightboxImg) return;
+  lightboxImg.src = src;
+  lightboxModal.classList.remove('hidden');
+}
+
+function closeLightbox() {
+  if (!lightboxModal) return;
+  lightboxModal.classList.add('hidden');
+}
+
+// -------------------------------------------------------------
+// Event Listeners Initialization
+// -------------------------------------------------------------
+
+// Tribute Modal Proceed Button
+if (proceedBtn) {
+  proceedBtn.addEventListener('click', () => {
+    if (tributeModal) tributeModal.classList.add('hidden');
+    if (mainPageContainer) mainPageContainer.classList.remove('blurred');
+    // Start main presentation
+    updatePlayer(0, false);
+  });
+}
+
+// Lightbox triggers on memory tiles
+memoryTiles.forEach((tile) => {
+  tile.addEventListener('click', () => {
+    const src = tile.getAttribute('data-src');
+    if (src) openLightbox(src);
+  });
+});
+
+if (lightboxClose) {
+  lightboxClose.addEventListener('click', closeLightbox);
+}
+
+if (lightboxBackdrop) {
+  lightboxBackdrop.addEventListener('click', closeLightbox);
+}
+
 // Tab Switching
 const tabButtons = document.querySelectorAll('.tab-btn');
 const tabPanes = document.querySelectorAll('.tab-pane');
@@ -320,7 +387,7 @@ tabButtons.forEach((btn) => {
   });
 });
 
-// Event Listeners
+// Member Nav Arrows
 if (prevBtn) {
   prevBtn.addEventListener('click', () => {
     updatePlayer(currentIndex - 1);
@@ -333,10 +400,21 @@ if (nextBtn) {
   });
 }
 
-// Keyboard navigation (ArrowLeft and ArrowRight only while on Members tab)
+// Global Keyboard Navigation
 document.addEventListener('keydown', (e) => {
+  // Close Lightbox on Escape
+  if (e.key === 'Escape' && lightboxModal && !lightboxModal.classList.contains('hidden')) {
+    closeLightbox();
+    return;
+  }
+
+  // Keyboard navigation (ArrowLeft and ArrowRight only while on Members tab and not modal)
   const membersTab = document.getElementById('tab-members');
-  if (membersTab && membersTab.classList.contains('active')) {
+  if (
+    membersTab &&
+    membersTab.classList.contains('active') &&
+    (!tributeModal || tributeModal.classList.contains('hidden'))
+  ) {
     if (e.key === 'ArrowLeft') {
       updatePlayer(currentIndex - 1);
     } else if (e.key === 'ArrowRight') {
@@ -349,4 +427,3 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('DOMContentLoaded', () => {
   initLoadingScreen();
 });
-
